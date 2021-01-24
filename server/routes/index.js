@@ -11,6 +11,6 @@ router.get('/', (req, res) => {
 
 router.use(authRouter);
 router.use(isLogin);
-router.use(pempekRouter);
+router.use('/pempeks', pempekRouter);
 
 module.exports = router
