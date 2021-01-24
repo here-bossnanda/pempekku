@@ -31,10 +31,25 @@ export default {
   name: 'navbar',
   methods: {
     logout () {
-      localStorage.clear()
       this.$store.commit('setToken', localStorage.getItem('access_token'))
       // this.setToken(localStorage.getItem('access_token'))
-      this.$router.push('/login')
+      this.$toasted.show('are you sure?', {
+        action: [
+          {
+            text: 'yes',
+            onClick: (e, toastObject) => {
+              localStorage.clear()
+              this.$router.push('/login')
+            }
+          },
+          {
+            text: 'no',
+            onClick: (e, toastObject) => {
+              toastObject.goAway(0)
+            }
+          }
+        ]
+      })
     }
   },
   computed: {

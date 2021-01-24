@@ -24,7 +24,22 @@ export default {
       this.$router.push(`/${id}/edit`)
     },
     destroyPempek (id) {
-      this.deletePempek(id)
+      this.$toasted.info('are you sure?', {
+        action: [
+          {
+            text: 'yes',
+            onClick: (e, toastObject) => {
+              this.deletePempek(id)
+            }
+          },
+          {
+            text: 'no',
+            onClick: (e, toastObject) => {
+              toastObject.goAway(0)
+            }
+          }
+        ]
+      })
     }
   }
 }
