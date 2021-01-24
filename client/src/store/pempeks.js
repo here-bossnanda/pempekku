@@ -1,5 +1,6 @@
 import axios from '../api/axios'
 import router from '../router'
+import Vue from 'vue'
 
 const state = {
   listPempek: []
@@ -50,6 +51,7 @@ const actions = {
         return dispatch('getPempeks')
       })
       .then((data) => {
+        Vue.toasted.success('added!')
         router.push('/')
       })
       .catch(error => console.log(error.response.data))
@@ -68,6 +70,7 @@ const actions = {
         return dispatch('getPempeks')
       })
       .then((data) => {
+        Vue.toasted.success('Updated!')
         router.push('/')
       })
       .catch(error => console.log(error.response.data))
