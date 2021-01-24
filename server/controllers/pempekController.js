@@ -42,7 +42,7 @@ class PempekController {
       const { name, image_url, price, stock } = req.body;
       const input = { name, image_url, price, stock };
 
-      const pempek = Pempek.findByPk(id);
+      const pempek = await Pempek.findByPk(id);
 
       if (!pempek) return next({ name: 'notFound' })
 
@@ -58,7 +58,7 @@ class PempekController {
 
   static async destroy(req, res, next) {
     try {
-      const pempek = User.findByPk(req.params.id);
+      const pempek = await Pempek.findByPk(req.params.id);
       if (!pempek) return next({ name: 'notFound' })
 
       await pempek.destroy();
